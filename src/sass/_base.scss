@@ -19,7 +19,8 @@ $font-secondary: "Fraunces", serif;
 $bp-largest: 75em; // 1200px
 $bp-large: 62.5em; // 1000px
 $bp-medium: 50em; // 800px
-$bp-small: 37.5em; // 600px
+$bp-small: 43.75em; // 700px
+$bp-smallest: 31.25em; // 500px
 
 *,
 *::after,
@@ -32,9 +33,471 @@ $bp-small: 37.5em; // 600px
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 37.5%;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 50%;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 37.5%;
+  }
 }
 
 body {
   font-family: $font-primary;
   font-size: 1.8rem;
+  // width: 100vw;
+}
+
+.orange-slice {
+  height: 100vh;
+  transition: all 0.4s;
+
+  @media only screen and (max-width: $bp-largest) {
+    height: 80vh;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    height: 70vh;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    height: 60vh;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    background-image: url(../img/mobile/image-header.jpg);
+    height: 60vh;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    height: 50vh;
+  }
+
+  background-image: url(../img/desktop/image-header.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: $color-neutral-white;
+
+  &__nav-mob {
+    width: 80vw;
+    position: absolute;
+    right: 5rem;
+    top: 8rem;
+    display: none;
+
+    &--active {
+      display: initial;
+    }
+
+    @media only screen and (min-width: $bp-small) {
+      display: none;
+    }
+  }
+
+  &__list {
+    background-color: #fff;
+    clip-path: polygon(0 15%, 85% 15%, 100% 0, 100% 100%, 0 100%);
+    padding: 10rem 5rem 5rem 5rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  &__item {
+    list-style: none;
+    border-radius: 4rem;
+    transition: all 0.4s;
+    padding: 2rem;
+
+    &:hover {
+      background-color: $color-primary-yellow;
+    }
+
+    &:hover .orange-slice__link {
+      color: $color-neutral-very-dark-saturated-blue;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    font-family: $font-primary;
+    color: $color-neutral-dark-grayish-blue;
+  }
+}
+
+.nav {
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    transform: translateY(3px);
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-evenly;
+
+    @media only screen and (max-width: $bp-small) {
+      display: none;
+    }
+  }
+
+  &__item {
+    padding: 1rem;
+    list-style: none;
+    margin-right: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+      background-color: $color-neutral-white;
+    }
+
+    &:hover .nav__link {
+      color: $color-neutral-very-dark-saturated-blue;
+    }
+  }
+
+  &__link {
+    color: $color-neutral-white;
+    text-decoration: none;
+  }
+
+  &__burger {
+    cursor: pointer;
+
+    @media only screen and (min-width: $bp-small) {
+      display: none;
+    }
+  }
+}
+
+.header {
+  margin-top: 10rem;
+}
+
+.arrow {
+  &__img {
+    width: 3rem;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20rem;
+
+    animation: moveDown 0.4s ease-in infinite;
+  }
+}
+
+.window {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media only screen and (max-width: $bp-small) {
+    grid-template-columns: 1fr;
+  }
+
+  &__text-1 {
+    // width: 50vw;
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      grid-row: 2/3;
+      align-items: center;
+      text-align: center;
+      height: 50vh;
+    }
+  }
+
+  &__paragraph {
+    color: $color-neutral-dark-grayish-blue;
+    line-height: 3rem;
+
+    &--cherries {
+      color: $color-primary-dark-saturated-cyan;
+      text-align: center;
+      margin-top: 5rem;
+    }
+
+    &--tangerine {
+      color: $color-primary-dark-blue;
+      text-align: center;
+      margin-top: 5rem;
+    }
+  }
+
+  &__btn {
+    border: none;
+    background-color: #fff;
+    font-size: inherit;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    font-weight: 800;
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+
+    &--yellow {
+      &::after {
+        content: "";
+        display: block;
+        height: 2rem;
+        width: 15rem;
+        border-radius: 10rem;
+        z-index: -1;
+        position: absolute;
+        left: -1rem;
+        top: 1rem;
+
+        background-color: $color-primary-yellow;
+        opacity: 0.4;
+        transition: all 0.3s;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+
+    &--red {
+      &::after {
+        content: "";
+        display: block;
+        height: 2rem;
+        width: 15rem;
+        border-radius: 10rem;
+        z-index: -1;
+        position: absolute;
+        left: -1rem;
+        top: 1rem;
+        background-color: $color-primary-soft-red;
+        opacity: 0.4;
+        transition: all 0.3s;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__egg {
+  }
+
+  &__img-egg {
+    display: block;
+    width: 100%;
+  }
+
+  &__glass {
+  }
+
+  &__img-glass {
+    display: block;
+    width: 100%;
+  }
+
+  &__text-2 {
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5rem;
+
+    @media only screen and (max-width: $bp-small) {
+      align-items: center;
+      text-align: center;
+      height: 50vh;
+    }
+  }
+
+  &__cherries {
+    // height: 40vw;
+    height: 70vh;
+
+    padding: 8rem;
+    background-image: url(../img/desktop/image-graphic-design.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media only screen and (max-width: $bp-small) {
+      background-image: url(../img/mobile/image-graphic-design.jpg);
+    }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__tangerine {
+    // height: 40vw;
+    height: 70vh;
+
+    padding: 8rem;
+    background-image: url(../img/desktop/image-photography.jpg);
+
+    @media only screen and (max-width: $bp-small) {
+      background-image: url(../img/mobile/image-photography.jpg);
+    }
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.testimonial {
+  padding: 5rem;
+
+  &__profiles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: 1fr;
+      row-gap: 8rem;
+    }
+
+    column-gap: 5rem;
+    padding: 5rem;
+
+    &--emily {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    &--thomas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5rem;
+    }
+
+    &--jennie {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5rem;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 25%;
+    border-radius: 50%;
+  }
+
+  &__paragraph {
+    color: $color-neutral-very-dark-grayish-blue;
+    text-align: center;
+    line-height: 3rem;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__name {
+    color: $color-neutral-very-dark-saturated-blue;
+    font-family: $font-secondary;
+    font-weight: 800;
+    font-size: 2rem;
+  }
+
+  &__position {
+    color: $color-neutral-grayish-blue;
+    font-size: 1.75rem;
+  }
+}
+
+.footer {
+  // width: 100vw;
+  background-color: $color-primary-dark-moderate-cyan;
+  &__images {
+    // width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    @media only screen and (max-width: $bp-small) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__logo {
+    fill: $color-primary-dark-saturated-cyan;
+    width: 20rem;
+    height: 20rem;
+    margin: 0 auto;
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    gap: 8rem;
+    padding-bottom: 2rem;
+  }
+
+  &__item {
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-primary-dark-saturated-cyan;
+    font-size: 2rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  &__social {
+    padding: 5rem;
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+  }
+
+  &__icon {
+    height: 3rem;
+    width: 3rem;
+    fill: $color-primary-dark-saturated-cyan;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      fill: #fff;
+    }
+  }
 }

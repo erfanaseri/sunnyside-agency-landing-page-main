@@ -1,0 +1,73 @@
+.header {
+  &__1 {
+    letter-spacing: 8px;
+    font-family: $font-secondary;
+    text-transform: uppercase;
+    font-size: 7rem;
+    text-align: center;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 4rem;
+    }
+  }
+
+  &__2 {
+    font-family: $font-secondary;
+    font-size: 5rem;
+    color: $color-neutral-very-dark-saturated-blue;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
+    }
+  }
+
+  &__3 {
+    font-family: $font-secondary;
+    font-size: 4rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 3rem;
+    }
+    text-align: center;
+    margin-top: 24rem;
+
+    &--cherries {
+      color: $color-primary-dark-saturated-cyan;
+    }
+
+    &--tangerine {
+      color: $color-primary-dark-blue;
+    }
+
+    &--testimonial {
+      margin-top: 0;
+      font-size: 3rem;
+
+      @media only screen and (max-width: $bp-small) {
+        font-size: 2.5rem;
+      }
+
+      letter-spacing: 1rem;
+      text-transform: uppercase;
+      color: $color-neutral-grayish-blue;
+    }
+  }
+}
+
+@keyframes moveDown {
+  0% {
+    transform: translateY(0);
+  }
+
+  80% {
+    transform: translateY(0.25rem);
+  }
+
+  60% {
+    transform: translateY(0.5rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
